@@ -784,6 +784,14 @@ def get_current_user(authorization: Optional[str], conn: sqlite3.Connection) -> 
 # Routes: health & auth
 # --------------------------------------------------------------------------
 
+@app.get("/")
+def read_root():
+    return {
+        "message": "Samaadhaan AI Backend is up and running!",
+        "health_check": "/api/health",
+        "docs": "/docs"
+    }
+
 @app.get("/api/health")
 def health():
     return {"status": "ok", "service": "Samaadhaan AI Demo Backend (FastAPI + SQLite)",
